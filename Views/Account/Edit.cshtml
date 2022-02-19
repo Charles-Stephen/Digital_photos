@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/Backend_Layout.cshtml";
+}
+
+
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h2 class="mt-4">Edit</h2>
+
+            <h2 class="ms-4 mt-2">My profile</h2>
+
+            <form method="post" class="container mt-5" action="~/Account/Edit" enctype="multipart/form-data">
+
+                <input type="hidden" name="id" value="@Model.id" />
+
+                <div align="center" class="form-group mb-3 w-100">
+                    <img id="output" class="rounded-circle" alt="@Model.User_Profile" style="width: 20vw; height: 20vw; border: solid black 1px;" />
+
+                    <p><input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)" style="display: none;"></p>
+                    <p><label for="file" class="rounded-pill btn btn-outline-dark" style="cursor: pointer;">Upload Image</label></p>
+
+                    <!-- Scripting for Image -->
+                    <script>
+                        var loadFile = function (event) {
+                            var image = document.getElementById('output');
+                            image.src = URL.createObjectURL(event.target.files[0]);
+                        };
+                    </script>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>First Name</label>
+                    <input type="text" name="firstname" class="form-control" value="@Model.First_Name" placeholder="Enter First Name" />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>Last Name</label>
+                    <input type="text" name="lastname" class="form-control" value="@Model.Last_Name" placeholder="Enter Last Name" />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>Email</label>
+                    <input type="email" name="email" class="form-control" value="@Model.Email" placeholder="Enter Email Address" />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>Password</label>
+                    <input type="password" name="pass" class="form-control" value="@Model.Pass" placeholder="Enter Password" />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>Date Of Birth</label>
+                    <input type="text" name="birth" class="form-control" value="@Model.Date_Of_Birth" placeholder="Enter Your Date Of Birth" />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>Gender</label>
+                    <div class="input-group justify-content-around">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gender" id="gender1" value="Male" checked>
+                            <label class="form-check-label" for="gender1">
+                                Male
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gender" id="gender2" value="Female">
+                            <label class="form-check-label" for="gender2">
+                                Female
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gender" id="gender3" value="Other">
+                            <label class="form-check-label" for="gender3">
+                                Other
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>Phone</label>
+                    <input type="tel" name="phone" class="form-control" value="@Model.Phone" placeholder="Enter Phone Number" />
+                </div>
+
+
+                <div class="form-group mb-3">
+                    <input type="submit" value="Save" class="btn btn-outline-dark" />
+
+                    <a href="~/Contact/Index">
+                        <input type="button" value="Cancel" class="btn btn-outline-dark" />
+                    </a>
+                </div>
+            </form>
+        </div>
+    </main>

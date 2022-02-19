@@ -1,0 +1,124 @@
+﻿@model Digital_photos.ViewModal.myuserdetails
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Home/Frontend_Layout.cshtml";
+}
+
+<div class="page-header contact padT100 padB70">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Theme Heading -->
+                <div class="theme-heading">
+                    <h1>My Profile</h1>
+                    <h3><span class="heading-shape">My <strong>Profile</strong></span></h3>
+                </div>
+                <!-- Theme Heading -->
+                <div class="breadcrumb-box">
+                    <ul class="breadcrumb text-center colorW marB0">
+                        <li>
+                            <a href="~/Home/Index">Home</a>
+                        </li>
+                        <li class="active">Profile</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+<!--//================Contact start==============//-->
+<div class="padB100 padT100">
+    <div class="container" style="width:100%">
+
+
+        <!-- Theme Heading -->
+        <div class="theme-heading">
+            <h1>@Session["name"]</h1>
+            <h3><span class="heading-shape">@Session["name"]</span></h3>
+        </div>
+        <!-- Theme Heading -->
+    </div>
+    <div class="container-fluid" style="width: 100vw; display:flex">
+
+        @foreach (var myuser in Model.users.Where(u => u.id == (int)Session["id"]))
+        {
+            <div style="margin-top: 5vw; width: 28vw; box-shadow: -3px -3px 10px 5px grey;">
+                <img src="~/Profile_Img/@Session["profile"]" alt="Not Available" class="img-thumbnail" style="width: 27.7vw; height: 27.7vw; border:none;" />
+                <h3 style="text-align:center">User Profile</h3>
+                <div>
+                    <table class="table">
+                        <tr>
+                            <th>First Name</th>
+                            <td>@myuser.First_Name</td>
+                        </tr>
+                        <tr>
+                            <th>Last Name</th>
+                            <td>@myuser.Last_Name</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>@myuser.Email</td>
+                        </tr>
+                        <tr>
+                            <th>Password</th>
+                            <td><input type="password" value="@myuser.Pass" readonly style="border:none; outline:none" /></td>
+                        </tr>
+                        <tr>
+                            <th>Date Of Birth</th>
+                            <td>@myuser.Date_Of_Birth</td>
+                        </tr>
+                        <tr>
+                            <th>Gender</th>
+                            <td>@myuser.Gender</td>
+                        </tr>
+                        <tr>
+                            <th>Phone</th>
+                            <td>@myuser.Phone</td>
+                        </tr>
+                    </table>
+                </div>
+                <p>
+                    <a class="itg-button" href="@Html.ActionLink("Edit", "Edit", new { id = myuser.id })"></a>
+                </p>
+            </div>
+        }
+
+
+        @foreach(var myorder in Model.orders.Where(o => o.UserId == (int)Session["id"]))
+        {
+
+        
+            <div style="width: auto; height: fit-content">
+                @if (myorder == null)
+                {
+
+                    <div class="row justify-content-around">
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-primary text-white mb-4">
+                                <div class="card-body">
+                                    <h5 class="card-title">Order</h5>
+                                    <p class="card-text">
+                                        dddd <br />
+                                        llll
+                                    </p>
+                                </div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" href="~/Photographs/Index">View Details</a>
+                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else if (myorder != null)
+                {
+                    <a class="small text-white stretched-link" href="~/Photographs/Index">View Details</a>
+                }
+                
+                <h3 style="color:black">ssssssssssssssssssssssssssssssssssssssssssssssss</h3>
+            </div>
+        }
+    </div>
+</div>

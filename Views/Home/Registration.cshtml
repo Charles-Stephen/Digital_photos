@@ -1,0 +1,154 @@
+﻿
+@{
+    ViewBag.Title = "Registration";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<!--
+
+    **********************************************************************************************************
+
+              Copyright (c) 2017 It-Geesks
+
+    **********************************************************************************************************
+
+    -->
+<!-- Mirrored from preview.itgeeksin.com/photography/error.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 09 Feb 2022 01:28:09 GMT -->
+<head>
+
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!--[if IE]>
+
+    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+
+    <![endif]-->
+
+    <meta name="keywords" content="HTML5 Template" />
+
+    <meta name="description" content="MY-IMAGE | Didital Online Photo Printing" />
+
+    <meta name="author" content="itgeeksin.com" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>MY-IMAGE | Didital Online Photo Printing</title>
+
+    <!-- Bootstrap -->
+    <!-- Favicon -->
+
+    <link rel="shortcut icon" href="~/frontend/assets/img/favicon.ico" type="image/x-icon">
+
+    <link rel="icon" href="~/frontend/assets/img/favicon.ico" type="image/x-icon">
+
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body style="background-image:url('/frontend/assets/img/background/error-back.jpg'); background-size:cover; background-repeat:no-repeat;">
+
+    <section class="container">
+
+
+            <div class="container">
+
+                <h2 class="text-center mt-5">REGISTER</h2>
+
+                <form method="post" class="container mt-5" action="~/Home/Register" enctype="multipart/form-data">
+                    <div align="center" class="form-group mb-3 w-100">
+                        <img id="output" class="rounded-circle" style="width: 20vw; height: 20vw; border: solid black 1px;" />
+
+                        <p><input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)" style="display: none;"></p>
+                        <p><label for="file" class="rounded-pill btn btn-outline-dark" style="cursor: pointer;">Upload Image</label></p>
+
+                        <!-- Scripting for Image -->
+                        <script>
+                            var loadFile = function (event) {
+                                var image = document.getElementById('output');
+                                image.src = URL.createObjectURL(event.target.files[0]);
+                            };
+                        </script>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="fw-bold">First Name</label>
+                        <input type="text" name="firstname" class="form-control" placeholder="Enter First Name" required />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="fw-bold">Last Name</label>
+                        <input type="text" name="lastname" class="form-control" placeholder="Enter Last Name" required />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="fw-bold">Email</label>
+                        <input type="email" name="email" class="form-control" placeholder="Enter Email Address" required />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="fw-bold">Password</label>
+                        <input type="password" name="pass" class="form-control" placeholder="Enter Password" required />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="fw-bold">Date Of Birth</label>
+                        <input type="text" name="birth" class="form-control" placeholder="Enter Your Date Of Birth" required />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="fw-bold">Gender</label>
+                        <div class="input-group justify-content-around">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gender" id="gender1" value="Male">
+                                <label class="form-check-label text-white" for="gender1">
+                                    Male
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gender" id="gender2" value="Female">
+                                <label class="form-check-label text-white" for="gender2">
+                                    Female
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gender" id="gender3" value="Other">
+                                <label class="form-check-label text-white" for="gender3">
+                                    Other
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="fw-bold">Phone</label>
+                        <input type="tel" name="phone" class="form-control" placeholder="Enter Phone Number" required />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <input type="submit" name="submit" class="rounded-pill btn btn-outline-dark text-white" style="border: solid white 2px" placeholder="Submit" />
+                        <p class="text-danger">@ViewBag.error</p>
+                        <small class="text-white">Do not have an Account? <a class="text-primary" href="~/Home/Login"> SIGN IN</a></small>
+                    </div>
+                </form>
+            </div>
+        
+    </section>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+    
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+
+
+<!-- Mirrored from preview.itgeeksin.com/photography/error.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 09 Feb 2022 01:28:11 GMT -->
+</html>
