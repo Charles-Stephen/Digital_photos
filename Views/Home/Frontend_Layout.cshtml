@@ -1,4 +1,5 @@
-﻿
+﻿@model Digital_photos.ViewModal.myuserdetails
+
 @{
     Layout = null;
 }
@@ -75,7 +76,7 @@
 
                                 <!-- Navbar Collapse -->
                                 <div class="navbar-collapse collapse">
-                                    <!-- nav -->                                    
+                                    <!-- nav -->
                                     <ul class="nav navbar-nav">
                                         <li>
                                             <a href="~/Home/Index">home</a>
@@ -103,7 +104,7 @@
                                             <li>
                                                 <a href="~/Home/Registration">sign up</a>
                                             </li>
-
+                                            
                                             <li>
                                                 <a href="~/Home/Login">login</a>
                                             </li>
@@ -115,16 +116,14 @@
                                                 <a href="#" data-toggle="modal" data-target="#exampleModalCenter">Print</a>
                                             </li>
 
-                                                    <li>
-                                                        <a href="~/Home/Profile">profile</a>
-                                                    </li>
-                                            
-                                        }
+                                            <li>
+                                                <a href="~/Home/Profile">profile</a>
+                                            </li>
 
                                             <li>
                                                 <a href="~/Account/Logout">logout</a>
                                             </li>
-                                    }
+                                        }
                                     </ul>
                                 </div>
                                 <!-- navbar-collapse -->
@@ -142,6 +141,8 @@
     </header>
 
     <!-- Modal -->
+    @if (Session["name"] != null)
+    {
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -152,23 +153,113 @@
                     </button>
                 </div>
 
-                <div class="modal-body">
-                    <form action="~/Orders/Create" method="post">
+                <form action="~/Orders/Create" method="post">
+                    <div class="modal-body">
 
                         <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
+                            <label>Photograph</label>
+                            @if (Session["ph"] != null)
+                            {
+                                foreach (var myphoto in Model.photographs.Where(p => p.UserId == (int)Session["id"]))
+                                {
+                                    <select name="cars" id="cars">
+                                        <option>Select Photo</option>
+                                        <option value="@myphoto.id"><img src="~/PhotoToPrint/@myphoto.Photo" style="max-height:8vw;" /></option>
+                                    </select>
+                                }
+                            }
+                            else if (Session["ph"] == null)
+                            {
+                                <select disabled>
+                                    <option>Select Photos</option>
+                                </select>
+                            }
                         </div>
-                    </form>
-                </div>
-                
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+
+                        <div class="form-group">
+                            <label>Size</label>
+
+                            <select name="sizeslct" id="cars">
+                                <option>Select Size</option>
+                                <option onclick="dd" value="1">3x5 (12 pics) Rs.80/-</option>
+                                <option onclick="dd" value="2">4x6 (12 pics) Rs.110/-</option>
+                                <option onclick="tt" value="3">5x7 Rs.145/-</option>
+                                <option onclick="tt" value="4">8x8 Rs.170/-</option>
+                                <option onclick="tt" value="5">A0 Rs.495/-</option>
+                                <option onclick="tt" value="6">A1 Rs.425/-</option>
+                                <option onclick="tt" value="7">A2 Rs.350/-</option>
+                                <option onclick="tt" value="8">A3 Rs.275/-</option>
+                                <option onclick="tt" value="9">A4Rs.195/-</option>
+                            </select>
+                        </div>
+
+                        <div  id="dt" class="form-group">
+                            <label>Quantity</label>
+                            <input name="quan" id="qq" type="number" min="1" max="12" required />
+                            <input type="button" id="button" value="check total" onclick="handleClick()">
+                        </div>
+                        
+                        <script>
+                            function dd() {
+                                document.getElementById("dt").style = "display:none";
+                            }
+                            function tt() {
+                                document.getElementById("dt").style = "display:block";
+                            }
+
+                            function handleClick() {
+                                firstNum = parseInt(document.getElementById("cars").value);
+                                secondNum = parseInt(document.getElementById("qq").value);
+                                var result;
+
+                                if (firstNum = 3) {
+                                    result = 145 * parseInt(secondNum);
+                                } else if (firstNum = 4) {
+                                    result = 170 * parseInt(secondNum);
+                                } else if (firstNum = 5) {
+                                    result = 495 * parseInt(secondNum);
+                                } else if (firstNum = 6) {
+                                    result = 425 * parseInt(secondNum);
+                                } else if (firstNum = 7) {
+                                    result = 350 * parseInt(secondNum);
+                                } else if (firstNum = 8) {
+                                    result = 275 * parseInt(secondNum);
+                                } else if (firstNum = 9) {
+                                    result = 195 * parseInt(secondNum);
+                                }
+
+                                var output = document.getElementById("result");
+                                output.value = result;
+                            }
+
+                            function setValue() {
+                                selectValue = document.getElementById("opList").value;
+                            }
+
+                            function init() {
+                                var button = document.getElementById("button");
+                                button.onclick = handleClick;
+                            }
+
+                            window.onload = init;
+                        </script>
+
+                        <div class="form-group">
+                            <label>Total price</label>
+                            <input type="text" id="result" placeholder="Result" readonly onfocus="this.blur();">
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+    }
     <!--//================Header end==============//-->
 
     @RenderBody()

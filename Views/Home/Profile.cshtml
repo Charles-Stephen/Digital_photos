@@ -40,11 +40,12 @@
         </div>
         <!-- Theme Heading -->
     </div>
-    <div class="container-fluid" style="width: 100vw; display:flex">
+    <div class="nowp" style="width: 100vw; display:flex; flex-flow:row; margin-right: 2vw; margin-left: 2vw;">
 
-        @foreach (var myuser in Model.users.Where(u => u.id == (int)Session["id"]))
-        {
-            <div style="margin-top: 5vw; width: 28vw; box-shadow: -3px -3px 10px 5px grey;">
+        
+        <div style="margin-top: 5vw; width: 28vw; box-shadow: -3px -3px 10px 5px grey;">
+            @foreach (var myuser in Model.users.Where(u => u.id == (int)Session["id"]))
+            {
                 <img src="~/Profile_Img/@Session["profile"]" alt="Not Available" class="img-thumbnail" style="width: 27.7vw; height: 27.7vw; border:none;" />
                 <h3 style="text-align:center">User Profile</h3>
                 <div>
@@ -82,43 +83,72 @@
                 <p>
                     <a class="itg-button" href="@Html.ActionLink("Edit", "Edit", new { id = myuser.id })"></a>
                 </p>
-            </div>
-        }
-
-
-        @foreach(var myorder in Model.orders.Where(o => o.UserId == (int)Session["id"]))
-        {
+            }
+        </div>
 
         
-            <div style="width: auto; height: fit-content">
-                @if (myorder == null)
+        <div class="container-fluid" style="width: 68vw; height: fit-content; margin-top: 5vw;">
+
+            <h2 class="text-center" style="margin-bottom: 2.5vw">ORDERS</h2>
+
+            <div class="row justify-content-around">
+
+                @foreach (var myorder in Model.price_Infos.Where(o => o.id == (int)Session["id"]))
                 {
 
-                    <div class="row justify-content-around">
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card bg-primary text-white mb-4">
-                                <div class="card-body">
-                                    <h5 class="card-title">Order</h5>
-                                    <p class="card-text">
-                                        dddd <br />
-                                        llll
-                                    </p>
-                                </div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="~/Photographs/Index">View Details</a>
-                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                </div>
+                    <div class="col-xl-2 col-md-4" style=" border: dotted; border-color: orange; margin-right: 1.8vw; margin-left:1.8vw;">
+                        <div class="card mb-3">
+                            <div class="card-body text-warning">
+                                <h5 class="card-title" style=" border-bottom: dotted; border-bottom-color: orange">Order</h5>
+                                <p class="card-text">
+                                    Some quick example text to <br /> build on the card title and <br />
+                                    @myorder.id
+                                    <br /> make up the bulk of the card's content.
+                                </p>
                             </div>
                         </div>
                     </div>
+
                 }
-                else if (myorder != null)
-                {
-                    <a class="small text-white stretched-link" href="~/Photographs/Index">View Details</a>
-                }
-                
-                <h3 style="color:black">ssssssssssssssssssssssssssssssssssssssssssssssss</h3>
             </div>
-        }
+
+
+            <div class="clear"></div>
+
+            <h2 class="text-center" style="margin-bottom: 2.5vw; margin-top:3vw;">PHOTOS</h2>
+
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <script>
+                    function looknexttab() {
+                        document.getElementById("myphotos").style = "display:none;"
+                    }
+
+                    function returnthistab() {
+                        document.getElementById("myphotos").style = "display:block;"
+                    }
+                </script>
+                <li class="nav-item active" onclick="returnthistab()">
+                    <a class="nav-link active"  data-toggle="tab" role="tab" aria-selected="true">Add photos</a>
+                </li>
+                <li class="nav-item" onclick="looknexttab()">
+                    <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Home</a>
+                </li>
+                <li class="nav-item" onclick="looknexttab()">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+                </li>
+                <li class="nav-item" onclick="looknexttab()">
+                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent" style="margin-right:4.5vw; margin-top: 2vw;">
+                <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg</div>
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</div>
+                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii</div>
+            </div>
+            <div style="margin-right:4.5vw; margin-top: 0.5vw;" id="myphotos">
+                <img src="~/Content/preview-removebg-preview.png" style="width:8vw; height:8vw;" />
+            </div>
+        </div>
+        
     </div>
 </div>

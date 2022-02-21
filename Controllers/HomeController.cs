@@ -21,7 +21,6 @@ namespace Digital_photos.Controllers
         //==============================================================
         public ActionResult Profile()
         {
-
             var tables = new myuserdetails
             {
                 users = db.users.ToList(),
@@ -254,7 +253,14 @@ namespace Digital_photos.Controllers
         //=================================================================================================
         public ActionResult Frontend_Layout()
         {
-            return View();
+            Session["ph"] = db.Photographs.Where(p => p.UserId == (int)Session["id"]);            
+
+            var tables = new myuserdetails
+            {
+                price_Infos = db.Price_Info.ToList(),
+                photographs = db.Photographs.ToList()
+            };
+            return View(tables);
         }
 
     }

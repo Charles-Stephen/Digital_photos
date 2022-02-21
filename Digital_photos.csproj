@@ -100,6 +100,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\preview-removebg-preview.png" />
     <Content Include="Content\Site.css" />
     <Content Include="frontend\about-us.html" />
     <Content Include="frontend\assets\css\bootstrap.min.css" />
@@ -377,6 +378,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="PhotoToPrint\" />
     <Folder Include="Views\Print\" />
   </ItemGroup>
   <ItemGroup>

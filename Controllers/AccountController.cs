@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Digital_photos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,8 +12,8 @@ namespace Photo.Controllers
 {
     public class AccountController : Controller
     {
-        Digital_Photo_PrintEntities db = new Digital_Photo_PrintEntities();
 
+        Digital_Photo_PrintEntities db = new Digital_Photo_PrintEntities();
 
 
 
