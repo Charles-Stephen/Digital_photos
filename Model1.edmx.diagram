@@ -7,10 +7,10 @@
       <Diagram DiagramId="428f9d1ef2af41999a4bf7e0fe6ab293" Name="Diagram1">
         <EntityTypeShape EntityType="Digital_Photo_PrintModel.category" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Digital_Photo_PrintModel.Contact" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digital_Photo_PrintModel.order" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Digital_Photo_PrintModel.Photograph" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Digital_Photo_PrintModel.Price_Info" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digital_Photo_PrintModel.user" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Digital_Photo_PrintModel.order" Width="1.5" PointX="5.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Digital_Photo_PrintModel.user" Width="1.5" PointX="0.75" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

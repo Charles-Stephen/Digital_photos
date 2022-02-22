@@ -21,5 +21,6 @@ namespace Digital_photos
         public Nullable<int> PriceInfo_Id { get; set; }
         public Nullable<int> Quantity { get; set; }
         public Nullable<int> Total_Price { get; set; }
+        public string Credit_No { get; set; }
     }
 }

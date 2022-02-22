@@ -25,5 +25,6 @@ namespace Digital_photos
         public string Gender { get; set; }
         public string Phone { get; set; }
         public Nullable<int> Order_id { get; set; }
+        public string Credit_Card { get; set; }
     }
 }

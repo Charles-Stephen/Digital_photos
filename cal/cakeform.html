@@ -10,34 +10,40 @@
 </head>
 <body onload='hideTotal()'>
     <div id="wrap">
-        <form action="#" id="cakeform" onsubmit="return false;">
+        <form action="#" id="photoform" onsubmit="return false;">
         <div>
             <div class="cont_order">
                <fieldset>
                 <legend>Make your cake!</legend>
                 <label >Size Of the Cake</label>
-                <label class='radiolabel'><input type="radio"  name="selectedcake" value="Round6" onclick="calculateTotal()" />Round cake 6" -  serves 8 people ($20)</label><br/>
-                <label class='radiolabel'><input type="radio"  name="selectedcake" value="Round8" onclick="calculateTotal()" />Round cake 8" - serves 12 people ($25)</label><br/>
-                <label class='radiolabel'><input type="radio"  name="selectedcake" value="Round10" onclick="calculateTotal()" />Round cake 10" - serves 16 people($35)</label><br/>
-                <label class='radiolabel'><input type="radio"  name="selectedcake" value="Round12" onclick="calculateTotal()" />Round cake 12" - serves 30 people($75)</label><br/>
+                <input type="radio" id="selectedsize0" name="selectedsize" value="None" onclick="calculateTotal()" />Round cake 6" -  serves 8 people ($20)</label><br/>
+                <input type="radio" id="selectedsize0" name="selectedsize" value="1" onclick="calculateTotal()" />3x5 - (12 pics per pack) Rs.80/-</label><br/>
+                <input type="radio" id="selectedsize0" name="selectedsize" value="2" onclick="calculateTotal()" />4x6 - (12 pics per pack) Rs.110/-</label><br/>
+                <input type="radio" id="selectedsize0" name="selectedsize" value="3" onclick="calculateTotal()" />5x7 - Rs.145/-</label><br/>
+                <input type="radio" id="selectedsize0" name="selectedsize" value="4" onclick="calculateTotal()" />8x8 - Rs.170/-</label><br/>
+                <input type="radio" id="selectedsize0" name="selectedsize" value="5" onclick="calculateTotal()" />A0 - Rs.495/-</label><br/>
+                <input type="radio" name="selectedsize" value="6" onclick="calculateTotal()" />A1 - Rs.425/-</label><br/>
+                <input type="radio" name="selectedsize" value="7" onclick="calculateTotal()" />A2 - Rs.350/-</label><br/>
+                <input type="radio" name="selectedsize" value="8" onclick="calculateTotal()" />A3 - Rs.275/-</label><br/>
+                <input type="radio" name="selectedsize" value="9" onclick="calculateTotal()" />A4 - Rs.195/-</label><br/>
                 <br/>
                 <label >Filling</label>
          
-                <select id="filling" name='filling' onchange="calculateTotal()">
-                <option value="None">Select Filling</option>
-                <option value="Lemon">Lemon($5)</option>
-                <option value="Custard">Custard($5)</option>
-                <option value="Fudge">Fudge($7)</option>
-                <option value="Mocha">Mocha($8)</option>
-                <option value="Raspberry">Raspberry($10)</option>
-                <option value="Pineapple">Pineapple($5)</option>
-                <option value="Dobash">Dobash($9)</option>
-                <option value="Mint">Mint($5)</option>
-                <option value="Cherry">Cherry($5)</option>
-                <option value="Apricot">Apricot($8)</option>
-                <option value="Buttercream">Buttercream($7)</option>
-                <option value="Chocolate Mousse">Chocolate Mousse($12)</option>
-               </select>
+                <select id="quantitywant" name='quantitywant' onchange="calculateTotal()">
+                    <option value="None">Select Quantity</option>
+                    <option value="1"> 1 </option>
+                    <option value="2"> 2 </option>
+                    <option value="3"> 3 </option>
+                    <option value="4"> 4 </option>
+                    <option value="5"> 5 </option>
+                    <option value="6"> 6 </option>
+                    <option value="7"> 7 </option>
+                    <option value="8"> 8 </option>
+                    <option value="9"> 9 </option>
+                    <option value="10"> 10 </option>
+                    <option value="11"> 11 </option>
+                    <option value="12"> 12 </option>
+                </select>
                 <br/>
                 <div id="totalPrice"></div>
                 

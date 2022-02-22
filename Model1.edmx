@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Digital_Photo_PrintModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Digital_Photo_PrintModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="category">
           <Key>
             <PropertyRef Name="id" />
@@ -34,6 +34,7 @@
           <Property Name="PriceInfo_Id" Type="int" />
           <Property Name="Quantity" Type="int" />
           <Property Name="Total_Price" Type="int" />
+          <Property Name="Credit_No" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Photograph">
           <Key>
@@ -68,6 +69,7 @@
           <Property Name="Gender" Type="varchar" MaxLength="255" />
           <Property Name="Phone" Type="varchar" MaxLength="255" />
           <Property Name="Order_id" Type="int" />
+          <Property Name="Credit_Card" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityContainer Name="Digital_Photo_PrintModelStoreContainer">
           <EntitySet Name="category" EntityType="Self.category" Schema="dbo" store:Type="Tables" />
@@ -77,8 +79,7 @@
           <EntitySet Name="Price_Info" EntityType="Self.Price_Info" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Digital_Photo_PrintModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -100,18 +101,6 @@
           <Property Name="Subject_" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Message_" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="order">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="Int32" />
-          <Property Name="Order_Number" Type="Int32" />
-          <Property Name="Photograph_Id" Type="Int32" />
-          <Property Name="PriceInfo_Id" Type="Int32" />
-          <Property Name="Quantity" Type="Int32" />
-          <Property Name="Total_Price" Type="Int32" />
-        </EntityType>
         <EntityType Name="Photograph">
           <Key>
             <PropertyRef Name="id" />
@@ -130,6 +119,27 @@
           <Property Name="Price" Type="Int32" />
           <Property Name="Sale_Price" Type="Int32" />
         </EntityType>
+        <EntityContainer Name="Digital_Photo_PrintEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="categories" EntityType="Self.category" />
+          <EntitySet Name="Contacts" EntityType="Self.Contact" />
+          <EntitySet Name="Photographs" EntityType="Self.Photograph" />
+          <EntitySet Name="Price_Info" EntityType="Self.Price_Info" />
+          <EntitySet Name="orders" EntityType="Digital_Photo_PrintModel.order" />
+          <EntitySet Name="users" EntityType="Digital_Photo_PrintModel.user" />
+        </EntityContainer>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Order_Number" Type="Int32" />
+          <Property Name="Photograph_Id" Type="Int32" />
+          <Property Name="PriceInfo_Id" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Total_Price" Type="Int32" />
+          <Property Name="Credit_No" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="user">
           <Key>
             <PropertyRef Name="id" />
@@ -145,15 +155,8 @@
           <Property Name="Gender" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Order_id" Type="Int32" />
+          <Property Name="Credit_Card" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityContainer Name="Digital_Photo_PrintEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="categories" EntityType="Self.category" />
-          <EntitySet Name="Contacts" EntityType="Self.Contact" />
-          <EntitySet Name="orders" EntityType="Self.order" />
-          <EntitySet Name="Photographs" EntityType="Self.Photograph" />
-          <EntitySet Name="Price_Info" EntityType="Self.Price_Info" />
-          <EntitySet Name="users" EntityType="Self.user" />
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -180,19 +183,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="orders">
-            <EntityTypeMapping TypeName="Digital_Photo_PrintModel.order">
-              <MappingFragment StoreEntitySet="orders">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Order_Number" ColumnName="Order_Number" />
-                <ScalarProperty Name="Photograph_Id" ColumnName="Photograph_Id" />
-                <ScalarProperty Name="PriceInfo_Id" ColumnName="PriceInfo_Id" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="Total_Price" ColumnName="Total_Price" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Photographs">
             <EntityTypeMapping TypeName="Digital_Photo_PrintModel.Photograph">
               <MappingFragment StoreEntitySet="Photograph">
@@ -213,20 +203,35 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="orders">
+            <EntityTypeMapping TypeName="Digital_Photo_PrintModel.order">
+              <MappingFragment StoreEntitySet="orders">
+                <ScalarProperty Name="Credit_No" ColumnName="Credit_No" />
+                <ScalarProperty Name="Total_Price" ColumnName="Total_Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="PriceInfo_Id" ColumnName="PriceInfo_Id" />
+                <ScalarProperty Name="Photograph_Id" ColumnName="Photograph_Id" />
+                <ScalarProperty Name="Order_Number" ColumnName="Order_Number" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="Digital_Photo_PrintModel.user">
               <MappingFragment StoreEntitySet="users">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
-                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Pass" ColumnName="Pass" />
-                <ScalarProperty Name="User_Type" ColumnName="User_Type" />
-                <ScalarProperty Name="User_Profile" ColumnName="User_Profile" />
-                <ScalarProperty Name="Date_Of_Birth" ColumnName="Date_Of_Birth" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Credit_Card" ColumnName="Credit_Card" />
                 <ScalarProperty Name="Order_id" ColumnName="Order_id" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Date_Of_Birth" ColumnName="Date_Of_Birth" />
+                <ScalarProperty Name="User_Profile" ColumnName="User_Profile" />
+                <ScalarProperty Name="User_Type" ColumnName="User_Type" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

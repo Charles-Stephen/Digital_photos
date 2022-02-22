@@ -27,9 +27,9 @@ namespace Digital_photos
     
         public virtual DbSet<category> categories { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
-        public virtual DbSet<order> orders { get; set; }
         public virtual DbSet<Photograph> Photographs { get; set; }
         public virtual DbSet<Price_Info> Price_Info { get; set; }
+        public virtual DbSet<order> orders { get; set; }
         public virtual DbSet<user> users { get; set; }
     }
 }

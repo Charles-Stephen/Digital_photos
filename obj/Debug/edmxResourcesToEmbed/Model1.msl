@@ -21,19 +21,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="orders">
-      <EntityTypeMapping TypeName="Digital_Photo_PrintModel.order">
-        <MappingFragment StoreEntitySet="orders">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="Order_Number" ColumnName="Order_Number" />
-          <ScalarProperty Name="Photograph_Id" ColumnName="Photograph_Id" />
-          <ScalarProperty Name="PriceInfo_Id" ColumnName="PriceInfo_Id" />
-          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-          <ScalarProperty Name="Total_Price" ColumnName="Total_Price" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Photographs">
       <EntityTypeMapping TypeName="Digital_Photo_PrintModel.Photograph">
         <MappingFragment StoreEntitySet="Photograph">
@@ -54,20 +41,35 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="orders">
+      <EntityTypeMapping TypeName="Digital_Photo_PrintModel.order">
+        <MappingFragment StoreEntitySet="orders">
+          <ScalarProperty Name="Credit_No" ColumnName="Credit_No" />
+          <ScalarProperty Name="Total_Price" ColumnName="Total_Price" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="PriceInfo_Id" ColumnName="PriceInfo_Id" />
+          <ScalarProperty Name="Photograph_Id" ColumnName="Photograph_Id" />
+          <ScalarProperty Name="Order_Number" ColumnName="Order_Number" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="users">
       <EntityTypeMapping TypeName="Digital_Photo_PrintModel.user">
         <MappingFragment StoreEntitySet="users">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="First_Name" ColumnName="First_Name" />
-          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Pass" ColumnName="Pass" />
-          <ScalarProperty Name="User_Type" ColumnName="User_Type" />
-          <ScalarProperty Name="User_Profile" ColumnName="User_Profile" />
-          <ScalarProperty Name="Date_Of_Birth" ColumnName="Date_Of_Birth" />
-          <ScalarProperty Name="Gender" ColumnName="Gender" />
-          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Credit_Card" ColumnName="Credit_Card" />
           <ScalarProperty Name="Order_id" ColumnName="Order_id" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Date_Of_Birth" ColumnName="Date_Of_Birth" />
+          <ScalarProperty Name="User_Profile" ColumnName="User_Profile" />
+          <ScalarProperty Name="User_Type" ColumnName="User_Type" />
+          <ScalarProperty Name="Pass" ColumnName="Pass" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -29,6 +29,7 @@
     <Property Name="PriceInfo_Id" Type="int" />
     <Property Name="Quantity" Type="int" />
     <Property Name="Total_Price" Type="int" />
+    <Property Name="Credit_No" Type="varchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="Photograph">
     <Key>
@@ -63,6 +64,7 @@
     <Property Name="Gender" Type="varchar" MaxLength="255" />
     <Property Name="Phone" Type="varchar" MaxLength="255" />
     <Property Name="Order_id" Type="int" />
+    <Property Name="Credit_Card" Type="varchar" MaxLength="20" />
   </EntityType>
   <EntityContainer Name="Digital_Photo_PrintModelStoreContainer">
     <EntitySet Name="category" EntityType="Self.category" Schema="dbo" store:Type="Tables" />

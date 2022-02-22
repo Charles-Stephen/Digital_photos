@@ -22,7 +22,7 @@ $(window).on("load", function() {
 		$('#faq').accordion();
 	}
 	
-	initMap();
+	
 
 	owlCarouselInit();  	
 	if(comingSoonTimer.length){
@@ -204,37 +204,7 @@ function owlCarouselInit() {
 
 }
 
-function initMap() {
-    "use strict";
-
-    var mapDiv = $('#gmap_canvas');
-
-    if (mapDiv.length) {
-        var myOptions = {
-            zoom: 5,
-            scrollwheel: false,
-            draggable: true,
-			//backgroundColor:grey,
-            center: new google.maps.LatLng(22.9623, 76.0508),
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);
-        var marker = new google.maps.Marker({
-            map: map,
-            position: new google.maps.LatLng(22.9623, 76.0508)
-        });
-        var infowindow = new google.maps.InfoWindow({
-            content: '<strong>ITGEEkS</strong>'
-        });
-        google.maps.event.addListener(marker, 'click', function() {
-            infowindow.open(map, marker);
-        });
-
-        infowindow.open(map, marker);
-		
-    }
-
-}			
+			
 
 function comingsoonInt() {
     "use strict";
