@@ -52,8 +52,10 @@ namespace Digital_photos.Controllers
             data.PriceInfo_Id = int.Parse(Request.Form["selectedsize"]);
             data.Quantity = int.Parse(Request.Form["quantitywant"]);
             data.Total_Price = int.Parse(Request.Form["totalPrice"]);
+            data.Credit_No = Request.Form["creditNo"];
 
 
+            db.orders.Add(data);
             return View();
         }
 
