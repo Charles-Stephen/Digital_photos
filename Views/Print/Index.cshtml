@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Digital_photos.order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Backend_Layout.cshtml";
+}
+
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h2 class="mt-4">Orders</h2>
+
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        User Id
+                    </th>
+                    <th>
+                        Order Number
+                    </th>
+                    <th>
+                        Photograph Id
+                    </th>
+                    <th>
+                        Price Info Id
+                    </th>
+                    <th>
+                        Quantity
+                    </th>
+                    <th>
+                        Total Price
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Order_Number)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Photograph_Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PriceInfo_Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Quantity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Total_Price)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </main>

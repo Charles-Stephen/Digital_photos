@@ -37,7 +37,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
+<body onload='hideTotal()'>
     <!--//================preloader  start==============//-->
     <div class="preloader">
         <div class="itg-loader">
@@ -153,7 +153,7 @@
                     </button>
                 </div>
 
-                <form action="~/Orders/Create" method="post">
+                <form action="~/Print/Create" id="photoform" method="post">
                     <div class="modal-body">
 
                         <div class="form-group">
@@ -178,82 +178,55 @@
 
                         <div class="form-group">
                             <label>Size</label>
+                            <label class='radiolabel'><input type="radio" name="selectedsize" value="None" onclick="calculateTotal()" />Round cake 6" -  serves 8 people ($20)</label><br/>
+                            <label class='radiolabel'><input type="radio"  name="selectedsize" value="1" onclick="calculateTotal()" />3x5 - (12 pics per pack) Rs.80/-</label><br/>
+                            <label class='radiolabel'><input type="radio" name="selectedsize" value="2" onclick="calculateTotal()" />4x6 - (12 pics per pack) Rs.110/-</label><br/>
+                            <label class='radiolabel'><input type="radio" name="selectedsize" value="3" onclick="calculateTotal()" />5x7 - Rs.145/-</label><br/>
+                            <label class='radiolabel'><input type="radio" name="selectedsize" value="4" onclick="calculateTotal()" />8x8 - Rs.170/-</label><br/>
+                            <label class='radiolabel'><input type="radio" name="selectedsize" value="5" onclick="calculateTotal()" />A0 - Rs.495/-</label><br/>
+                            <label class='radiolabel'><input type="radio" name="selectedsize" value="6" onclick="calculateTotal()" />A1 - Rs.425/-</label><br/>
+                            <label class='radiolabel'><input type="radio" name="selectedsize" value="7" onclick="calculateTotal()" />A2 - Rs.350/-</label><br/>
+                            <label class='radiolabel'><input type="radio" name="selectedsize" value="8" onclick="calculateTotal()" />A3 - Rs.275/-</label><br/>
+                            <label class='radiolabel'><input type="radio" name="selectedsize" value="9" onclick="calculateTotal()" />A4 - Rs.195/-</label><br/>
+                        </div>
 
-                            <select name="sizeslct" id="cars">
-                                <option>Select Size</option>
-                                <option onclick="dd" value="1">3x5 (12 pics) Rs.80/-</option>
-                                <option onclick="dd" value="2">4x6 (12 pics) Rs.110/-</option>
-                                <option onclick="tt" value="3">5x7 Rs.145/-</option>
-                                <option onclick="tt" value="4">8x8 Rs.170/-</option>
-                                <option onclick="tt" value="5">A0 Rs.495/-</option>
-                                <option onclick="tt" value="6">A1 Rs.425/-</option>
-                                <option onclick="tt" value="7">A2 Rs.350/-</option>
-                                <option onclick="tt" value="8">A3 Rs.275/-</option>
-                                <option onclick="tt" value="9">A4Rs.195/-</option>
+                        <div id="dt" class="form-group">
+                            <label>Quantity</label>
+                            <select id="quantitywant" name='quantitywant' onchange="calculateTotal()">
+                                <option value="None">Select Quantity</option>
+                                <option value="1"> 1 </option>
+                                <option value="2"> 2 </option>
+                                <option value="3"> 3 </option>
+                                <option value="4"> 4 </option>
+                                <option value="5"> 5 </option>
+                                <option value="6"> 6 </option>
+                                <option value="7"> 7 </option>
+                                <option value="8"> 8 </option>
+                                <option value="9"> 9 </option>
+                                <option value="10"> 10 </option>
+                                <option value="11"> 11 </option>
+                                <option value="12"> 12 </option>
                             </select>
                         </div>
-
-                        <div  id="dt" class="form-group">
-                            <label>Quantity</label>
-                            <input name="quan" id="qq" type="number" min="1" max="12" required />
-                            <input type="button" id="button" value="check total" onclick="handleClick()">
-                        </div>
                         
-                        <script>
-                            function dd() {
-                                document.getElementById("dt").style = "display:none";
-                            }
-                            function tt() {
-                                document.getElementById("dt").style = "display:block";
-                            }
-
-                            function handleClick() {
-                                firstNum = parseInt(document.getElementById("cars").value);
-                                secondNum = parseInt(document.getElementById("qq").value);
-                                var result;
-
-                                if (firstNum = 3) {
-                                    result = 145 * parseInt(secondNum);
-                                } else if (firstNum = 4) {
-                                    result = 170 * parseInt(secondNum);
-                                } else if (firstNum = 5) {
-                                    result = 495 * parseInt(secondNum);
-                                } else if (firstNum = 6) {
-                                    result = 425 * parseInt(secondNum);
-                                } else if (firstNum = 7) {
-                                    result = 350 * parseInt(secondNum);
-                                } else if (firstNum = 8) {
-                                    result = 275 * parseInt(secondNum);
-                                } else if (firstNum = 9) {
-                                    result = 195 * parseInt(secondNum);
-                                }
-
-                                var output = document.getElementById("result");
-                                output.value = result;
-                            }
-
-                            function setValue() {
-                                selectValue = document.getElementById("opList").value;
-                            }
-
-                            function init() {
-                                var button = document.getElementById("button");
-                                button.onclick = handleClick;
-                            }
-
-                            window.onload = init;
-                        </script>
 
                         <div class="form-group">
                             <label>Total price</label>
-                            <input type="text" id="result" placeholder="Result" readonly onfocus="this.blur();">
+                            <input id="totalPrice" placeholder="Total Price" name="totalPrice" readonly />
                         </div>
 
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        @if (Session["ph"] != null)
+                        {
+                            <button type="submit" class="btn btn-primary">Print</button>
+                        }
+                        @if (Session["ph"] != null)
+                        {
+                            <button disabled type="submit" class="btn btn-primary">Print</button>
+                        }
                     </div>
                 </form>
             </div>
@@ -272,7 +245,11 @@
                     <div class="footer-box">
                         <div class="col-md-5 col-sm-6 col-xs-12">
                             <div class="foot-sec">
-                                <a href="index.html" class="footer-logo"><img class="site_logo" alt="Site Logo" src="~/frontend/assets/img/logo.png" /></a>
+                                <a href="~/Home/Index" class="footer-logo">
+                                    <div class="theme-heading">
+                                        <h3><span class="heading-shape" style="color:white"><strong>MY</strong> - IMAGE</span></h3>
+                                    </div>
+                                </a>
                                 <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's;</p>
                                 <ul class="social-icon">
                                     <li><a href="#" class="active"><span><i class="fa fa-twitter" aria-hidden="true"></i></span></a></li>
@@ -333,6 +310,8 @@
     <script src="~/frontend/assets/plugin/mixItUp/js/jquery.mixitup.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;key=AIzaSyCIdIjmZwQXmxM_eNnEPMp1YQm4DFXpkkc"></script>
     <script src="~/frontend/assets/js/main.js"></script>
+    
+    <script src="~/cal/js/formcalculations.js"></script>
 </body>
 
 <!-- Mirrored from preview.itgeeksin.com/photography/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 09 Feb 2022 01:28:03 GMT -->
