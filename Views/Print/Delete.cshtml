@@ -1,0 +1,88 @@
+﻿@model Digital_photos.order
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/Backend_Layout.cshtml";
+}
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h2 class="mt-4">Order</h2>
+            <h2 class="ms-4 mt-2">Delete</h2>
+
+            <h3>Are you sure you want to delete this?</h3>
+            <div>
+                <h4>order</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        User Id
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.UserId)
+                    </dd>
+
+                    <dt>
+                        Order Number
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Order_Number)
+                    </dd>
+
+                    <dt>
+                        Photograph Id
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Photograph_Id)
+                    </dd>
+
+                    <dt>
+                        Price Info Id
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.PriceInfo_Id)
+                    </dd>
+
+                    <dt>
+                        Quantity
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Quantity)
+                    </dd>
+
+                    <dt>
+                        Total Price
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Total_Price)
+                    </dd>
+
+                    <dt>
+                        Credit Card No.
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Credit_No)
+                    </dd>
+
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <a href="~/Print/Index">
+                            <input type="button" value="Delete" class="btn btn-outline-dark" />
+                        </a>
+                        <input type="submit" value="Delete" class="btn btn-outline-dark" />
+                    </div>
+                }
+            </div>

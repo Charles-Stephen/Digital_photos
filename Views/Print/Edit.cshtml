@@ -1,0 +1,72 @@
+﻿@model Digital_photos.order
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/Backend_Layout.cshtml";
+}
+<script src="~/cal/js/formcalculations.js"></script>
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h2 class="mt-4">>Edit</h2>
+
+            <h3 class="ms-4 mt-2">Order</h3>
+
+            <form action="~/Print/Edit" id="photoform" method="post">
+
+                <input type="hidden" name="id" value="@Model.id" />
+
+                <style>
+                    label.radiolabel input {
+                        position: inherit !important;
+                        visibility: visible !important;
+                        margin-right: 20px;
+                    }
+                </style>
+
+                <div class="form-group">
+                    <label>Size</label><br />
+                    <label class='radiolabel'><input type="radio" name="selectedsize" value="None" onclick="calculateTotal()" />Round cake 6" -  serves 8 people ($20)</label><br />
+                    <label class='radiolabel'><input type="radio" name="selectedsize" value="1" onclick="calculateTotal()" />3x5 - (12 pics per pack) Rs.80/-</label><br />
+                    <label class='radiolabel'><input type="radio" name="selectedsize" value="2" onclick="calculateTotal()" />4x6 - (12 pics per pack) Rs.110/-</label><br />
+                    <label class='radiolabel'><input type="radio" name="selectedsize" value="3" onclick="calculateTotal()" />5x7 - Rs.145/-</label><br />
+                    <label class='radiolabel'><input type="radio" name="selectedsize" value="4" onclick="calculateTotal()" />8x8 - Rs.170/-</label><br />
+                    <label class='radiolabel'><input type="radio" name="selectedsize" value="5" onclick="calculateTotal()" />A0 - Rs.495/-</label><br />
+                    <label class='radiolabel'><input type="radio" name="selectedsize" value="6" onclick="calculateTotal()" />A1 - Rs.425/-</label><br />
+                    <label class='radiolabel'><input type="radio" name="selectedsize" value="7" onclick="calculateTotal()" />A2 - Rs.350/-</label><br />
+                    <label class='radiolabel'><input type="radio" name="selectedsize" value="8" onclick="calculateTotal()" />A3 - Rs.275/-</label><br />
+                    <label class='radiolabel'><input type="radio" name="selectedsize" value="9" onclick="calculateTotal()" />A4 - Rs.195/-</label><br />
+                </div>
+
+                <div id="dt" class="form-group">
+                    <label>Quantity</label>
+                    <select id="quantitywant" name='quantitywant' onchange="calculateTotal()">
+                        <option value="None">Select Quantity</option>
+                        <option value="1"> 1 </option>
+                        <option value="2"> 2 </option>
+                        <option value="3"> 3 </option>
+                        <option value="4"> 4 </option>
+                        <option value="5"> 5 </option>
+                        <option value="6"> 6 </option>
+                        <option value="7"> 7 </option>
+                        <option value="8"> 8 </option>
+                        <option value="9"> 9 </option>
+                        <option value="10"> 10 </option>
+                        <option value="11"> 11 </option>
+                        <option value="12"> 12 </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Credit Card No.</label>
+                    <input placeholder="Enter Credit Card No." name="creditNo" required />
+                </div>
+
+                <div class="form-group mb-3">
+                    <a href="~/Print/Index"><input type="button" value="Cancel" class="btn btn-outline-dark" /></a>
+                    <input type="submit" value="Save" class="btn btn-outline-dark" />
+                </div>
+            </form>
+        </div>
+    </main>

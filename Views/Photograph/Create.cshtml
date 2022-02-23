@@ -1,0 +1,52 @@
+﻿@model Digital_photos.ViewModal.myuserdetails
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/Backend_Layout.cshtml";
+}
+
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h2 class="mt-4">>Create</h2>
+
+            <h3 class="ms-4 mt-2">Photograph</h3>
+
+            <form action="~/Photograph/Create" enctype="multipart/form-data" method="post">
+                <div align="center" class="form-group mb-3 w-100">
+                    <img id="output" class="rounded-circle" style="width: 20vw; height: 20vw; border: solid black 1px;" />
+
+                    <p><input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)" style="display: none;"></p>
+                    <p><label for="file" class="rounded-pill btn btn-outline-dark" style="cursor: pointer;">Upload Image</label></p>
+
+                    <!-- Scripting for Image -->
+                    <script>
+                        var loadFile = function (event) {
+                            var image = document.getElementById('output');
+                            image.src = URL.createObjectURL(event.target.files[0]);
+                        };
+                    </script>
+                </div>
+
+                <div class="form-group">
+                    <label>Category Name</label>
+                    @foreach(category mycatg in Model.categories)
+                    {
+                        <select name="catg">
+                            <option value="@mycatg.id">@mycatg.Category_Name</option>
+                        </select>
+                    }
+                </div>
+
+                <div class="form-group mb-3">
+                    <input type="submit" value="Submit" class="btn btn-outline-dark" />
+
+                    <a href="~/Photograph/Index">
+                        <input type="button" value="Cancel" class="btn btn-outline-dark" />
+                    </a>
+                </div>
+                <p class="text-danger">@ViewBag.error</p>
+            </form>
+        </div>
+    </main>

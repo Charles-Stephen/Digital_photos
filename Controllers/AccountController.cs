@@ -61,7 +61,7 @@ namespace Photo.Controllers
 
                     var myimg = filename + rnd.Next() + exten;
 
-                    image.SaveAs(@"D:\E-Project\Photo\Profile_Img\" + myimg);
+                    image.SaveAs(Path.Combine(Server.MapPath("~/Profile_Img"), myimg));
 
                     data.First_Name = Request.Form["firstname"];
                     data.Last_Name = Request.Form["lastname"];

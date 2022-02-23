@@ -159,7 +159,7 @@
                         {
                             <div class="form-group">
                                 <label>Photograph</label>
-                                foreach (var myphoto in Model.photographs.Where(p => p.UserId == (int)Session["id"]))
+                                @foreach (var myphoto in Model.photographs.Where(p => p.UserId == (int)Session["id"]))
                                 {
                                 <select name="cars" id="cars">
                                     <option>Select Photo</option>
@@ -220,9 +220,9 @@
                                 <input placeholder="Enter Credit Card No." name="creditNo" required />
                             </div>
                         }
-                        else if (Session["ph"] != null)
+                        else if (Session["ph"] == null)
                         {
-                            <h3 class="text-capitalize text-center"> Please add some images on your profile before ordering! </h3>
+                            <h3 class="text-center"> Please add some images on your profile before ordering! </h3>
                         }
                     </div>
 
@@ -232,11 +232,12 @@
                         {
                             <button type="submit" class="btn btn-primary">Print</button>
                         }
-                        @if (Session["ph"] != null)
+                        @if (Session["ph"] == null)
                         {
                             <button disabled type="submit" class="btn btn-primary">Print</button>
                         }
                     </div>
+                    <p class="text-danger">@ViewBag.er</p>
                 </form>
             </div>
         </div>
