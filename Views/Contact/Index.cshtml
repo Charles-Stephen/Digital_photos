@@ -1,14 +1,15 @@
-﻿@model IEnumerable<Digital_photos.Photograph>
+﻿@model IEnumerable<Digital_photos.Contact>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/Backend_Layout.cshtml";
 }
 
+
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <h2 class="mt-4">Photographs</h2>
+            <h2 class="mt-4">Cantact</h2>
 
             <p>
                 @Html.ActionLink("Create New", "Create")
@@ -16,13 +17,19 @@
             <table class="table">
                 <tr>
                     <th>
-                        User Id
+                        Name
                     </th>
                     <th>
-                        Photograph
+                        Email
                     </th>
                     <th>
-                        Category Id
+                        Phone
+                    </th>
+                    <th>
+                        Subject
+                    </th>
+                    <th>
+                        Message
                     </th>
                     <th></th>
                 </tr>
@@ -31,13 +38,19 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.UserId)
+                            @Html.DisplayFor(modelItem => item.Name)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Photo)
+                            @Html.DisplayFor(modelItem => item.Email)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.category_id)
+                            @Html.DisplayFor(modelItem => item.Phone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Subject_)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Message_)
                         </td>
                         <td>
                             @Html.ActionLink("Edit", "Edit", new { id = item.id }) |

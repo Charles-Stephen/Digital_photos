@@ -1,0 +1,45 @@
+﻿@model Digital_photos.Contact
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/Backend_Layout.cshtml";
+}
+
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h2 class="mt-4">>Edit</h2>
+
+            <h3 class="ms-4 mt-2">Contact</h3>
+
+            <form class="theme-form" action="~/Home/Contact" method="post">
+
+
+                <input type="hidden" name="id" value="@Model.id" />
+
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" value="@Model.Name" name="name" placeholder="Name" required>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="email" value="@Model.Email" name="email" placeholder="Email" required>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="tel" value="@Model.Phone" name="phone" placeholder="Phone" required>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" value="@Model.Subject_" name="subject" placeholder="Subject (Optional)">
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <textarea name="message" placeholder="@Model.Message_" required rows="8"></textarea>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="submit" value="Submit" class="btn btn-outline-dark" />
+
+                    <a href="~/Contact/Index">
+                        <input type="button" value="Cancel" class="btn btn-outline-dark" />
+                    </a>
+                </div>
+            </form>
+        </div>
+    </main>

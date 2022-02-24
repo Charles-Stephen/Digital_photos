@@ -10,94 +10,94 @@ using Digital_photos;
 
 namespace Digital_photos.Controllers
 {
-    public class CategoryController : Controller
+    public class Price_InfoController : Controller
     {
         private Digital_Photo_PrintEntities db = new Digital_Photo_PrintEntities();
 
-        // GET: Category
+        // GET: Price_Info
         public ActionResult Index()
         {
-            return View(db.categories.ToList());
+            return View(db.Price_Info.ToList());
         }
 
-      
+        
 
-        // GET: Category/Create
+        // GET: Price_Info/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Category/Create
+        // POST: Price_Info/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,Category_Name")] category category)
+        public ActionResult Create([Bind(Include = "id,Size,Price,Sale_Price")] Price_Info price_Info)
         {
             if (ModelState.IsValid)
             {
-                db.categories.Add(category);
+                db.Price_Info.Add(price_Info);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(category);
+            return View(price_Info);
         }
 
-        // GET: Category/Edit/5
+        // GET: Price_Info/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            category category = db.categories.Find(id);
-            if (category == null)
+            Price_Info price_Info = db.Price_Info.Find(id);
+            if (price_Info == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(price_Info);
         }
 
-        // POST: Category/Edit/5
+        // POST: Price_Info/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,Category_Name")] category category)
+        public ActionResult Edit([Bind(Include = "id,Size,Price,Sale_Price")] Price_Info price_Info)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(category).State = EntityState.Modified;
+                db.Entry(price_Info).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(category);
+            return View(price_Info);
         }
 
-        // GET: Category/Delete/5
+        // GET: Price_Info/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            category category = db.categories.Find(id);
-            if (category == null)
+            Price_Info price_Info = db.Price_Info.Find(id);
+            if (price_Info == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(price_Info);
         }
 
-        // POST: Category/Delete/5
+        // POST: Price_Info/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            category category = db.categories.Find(id);
-            db.categories.Remove(category);
+            Price_Info price_Info = db.Price_Info.Find(id);
+            db.Price_Info.Remove(price_Info);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
