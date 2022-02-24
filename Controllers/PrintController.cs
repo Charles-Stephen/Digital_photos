@@ -46,17 +46,22 @@ namespace Digital_photos.Controllers
         public ActionResult Create(FormCollection fc)
         {
             order data = new order();
-            user data2 = new user();
+
+            var myuser = (int)Session["id"];
+            int id = myuser;
+
+            user data2 = db.users.Find(id);
 
             Random rndNum = new Random();
 
-            var myuser = (int)Session["id"];
+
             var mycard = Request.Form["creditNo"];
             var mycredit = db.users.FirstOrDefault(a => a.Credit_Card == mycard && a.id == myuser);
 
             if (mycard != null)
             {
                 var myorderid = rndNum.Next(1, 100);
+
 
                 data.UserId = myuser;
                 data.Order_Number = myorderid;
@@ -68,7 +73,8 @@ namespace Digital_photos.Controllers
                 data2.Order_id = myorderid;
 
                 db.orders.Add(data);
-                db.users.Add(data2);
+
+                db.Entry(data2).State = EntityState.Modified;
                 db.SaveChanges();
                 var x = Session["usertype"];
                 switch (x)

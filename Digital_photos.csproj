@@ -392,11 +392,9 @@
     <Content Include="Views\Account\Logout.cshtml" />
     <Content Include="Views\Account\Reg.cshtml" />
     <Content Include="Views\Print\Index.cshtml" />
-    <Content Include="Views\Print\Create.cshtml" />
     <Content Include="Views\Print\Edit.cshtml" />
     <Content Include="Views\Photograph\Index.cshtml" />
     <Content Include="Views\Print\Delete.cshtml" />
-    <Content Include="Views\Photograph\Create.cshtml" />
     <Content Include="Views\Photograph\Delete.cshtml" />
     <Content Include="Views\Category\Create.cshtml" />
     <Content Include="Views\Category\Delete.cshtml" />
@@ -407,9 +405,9 @@
     <Content Include="Views\Price_Info\Edit.cshtml" />
     <Content Include="Views\Price_Info\Index.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
-    <Content Include="Views\Contact\Create.cshtml" />
-    <Content Include="Views\Contact\Edit.cshtml" />
     <Content Include="Views\Account\Account.cshtml" />
+    <Content Include="Views\Print\Create.cshtml" />
+    <Content Include="Views\Photograph\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

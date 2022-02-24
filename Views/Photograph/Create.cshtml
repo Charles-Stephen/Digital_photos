@@ -31,7 +31,7 @@
 
                 <div class="form-group">
                     <label>Category Name</label>
-                    @foreach(category mycatg in Model.categories)
+                    @foreach (category mycatg in Model.categories)
                     {
                         <select name="catg">
                             <option value="@mycatg.id">@mycatg.Category_Name</option>

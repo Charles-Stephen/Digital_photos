@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.IO;
 using System.Net;
+using System.Data;
 using System.Data.Entity;
 
 namespace Photo.Controllers
@@ -24,7 +25,18 @@ namespace Photo.Controllers
         {
             if (Session["name"] != null)
             {
-                return View();
+                int x = (int)Session["id"];
+
+                switch(x)
+                {
+                    case 0:
+                        return View();
+                        break;
+                    
+                    case 1:
+                        return RedirectToAction("Index", "Home");
+                        break;
+                }
             }
             else if (Session["name"] == null)
             {
