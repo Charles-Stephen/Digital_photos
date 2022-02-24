@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Digital_photos.user>
+
+@{
+    ViewBag.Title = "Account";
+    Layout = "~/Views/Shared/Backend_Layout.cshtml";
+}
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h2 class="mt-4">Account</h2>
+
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        First Name
+                    </th>
+                    <th>
+                        Last Name
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Password
+                    </th>
+                    <th>
+                        User Type
+                    </th>
+                    <th>
+                        User Profile
+                    </th>
+                    <th>
+                        Date Of Birth
+                    </th>
+                    <th>
+                        Gender
+                    </th>
+                    <th>
+                        Phone
+                    </th>
+                    <th>
+                        Order Id
+                    </th>
+                    <th>
+                        Credit Card No.
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.First_Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Last_Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Pass)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.User_Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.User_Profile)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date_Of_Birth)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gender)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Phone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Order_id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Credit_Card)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </main>

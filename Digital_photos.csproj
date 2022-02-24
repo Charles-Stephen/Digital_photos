@@ -98,6 +98,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="backend\401.html" />
+    <Content Include="backend\404.html" />
+    <Content Include="backend\500.html" />
+    <Content Include="backend\assets\demo\chart-area-demo.js" />
+    <Content Include="backend\assets\demo\chart-bar-demo.js" />
+    <Content Include="backend\assets\demo\chart-pie-demo.js" />
+    <Content Include="backend\assets\demo\datatables-demo.js" />
+    <Content Include="backend\assets\img\error-404-monochrome.svg" />
+    <Content Include="backend\charts.html" />
+    <Content Include="backend\css\styles.css" />
+    <Content Include="backend\index.html" />
+    <Content Include="backend\js\datatables-simple-demo.js" />
+    <Content Include="backend\js\scripts.js" />
+    <Content Include="backend\layout-sidenav-light.html" />
+    <Content Include="backend\layout-static.html" />
+    <Content Include="backend\login.html" />
+    <Content Include="backend\password.html" />
+    <Content Include="backend\register.html" />
+    <Content Include="backend\tables.html" />
     <Content Include="cal\cakeform.html" />
     <Content Include="cal\js\formcalculations.js" />
     <Content Include="Content\preview-removebg-preview.png" />
@@ -390,6 +409,7 @@
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Contact\Create.cshtml" />
     <Content Include="Views\Contact\Edit.cshtml" />
+    <Content Include="Views\Account\Account.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

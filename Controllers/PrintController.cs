@@ -55,17 +55,20 @@ namespace Digital_photos.Controllers
             var mycredit = db.users.FirstOrDefault(a => a.Credit_Card == mycard && a.id == myuser);
 
             if (mycard != null)
-            {            
+            {
+                var myorderid = rndNum.Next(1, 100);
+
                 data.UserId = myuser;
-                data.Order_Number = rndNum.Next(1, 100);
+                data.Order_Number = myorderid;
                 data.Photograph_Id = int.Parse(Request.Form["cars"]);
                 data.PriceInfo_Id = int.Parse(Request.Form["selectedsize"]);
                 data.Quantity = int.Parse(Request.Form["quantitywant"]);
                 data.Total_Price = int.Parse(Request.Form["totalPrice"]);
                 data.Credit_No = Request.Form["creditNo"];
-
+                data2.Order_id = myorderid;
 
                 db.orders.Add(data);
+                db.users.Add(data2);
                 db.SaveChanges();
                 var x = Session["usertype"];
                 switch (x)

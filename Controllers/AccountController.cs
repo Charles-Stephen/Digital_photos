@@ -35,6 +35,15 @@ namespace Photo.Controllers
 
 
         //==============================================================
+        //              ACCOUNTS
+        //==============================================================
+        public ActionResult Account()
+        {
+            return View(db.users.ToList());
+        }
+
+
+        //==============================================================
         //              REGISTER
         //==============================================================
         public ActionResult Reg()
@@ -72,7 +81,7 @@ namespace Photo.Controllers
                     data.Phone = Request.Form["phone"];
                     data.User_Profile = myimg;
                     data.User_Type = 0;
-
+                    data.Credit_Card = Request.Form["CreditNo"];
 
                     db.users.Add(data);
                     db.SaveChanges();
@@ -150,6 +159,7 @@ namespace Photo.Controllers
             data.Gender = Request.Form["gender"];
             data.Phone = Request.Form["phone"];
             data.User_Profile = myimg;
+            data.Credit_Card = Request.Form["CreditNo"];
 
             db.Entry(data).State = EntityState.Modified;
             db.SaveChanges();
