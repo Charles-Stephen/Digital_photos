@@ -113,41 +113,175 @@
             </div>
 
 
-            <div class="clear"></div>
+            <h2 class="text-center" style="margin-bottom: 0.5vw; margin-top:3vw;">My Album</h2>
+            <h3 class="text-center" style="margin-bottom: 2.5vw;"><label data-toggle="modal" data-target="#mypic" style="border-color:orangered; color:black;" class="itg-button">Add Photo</label></h3>
 
-            <h2 class="text-center" style="margin-bottom: 2.5vw; margin-top:3vw;">PHOTOS</h2>
+            <!--Add New Photograph-->
 
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <script>
-                    function looknexttab() {
-                        document.getElementById("myphotos").style = "display:none;"
-                    }
+            <div class="modal fade" id="mypic" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Print Photo</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
 
-                    function returnthistab() {
-                        document.getElementById("myphotos").style = "display:block;"
-                    }
-                </script>
-                <li class="nav-item active" onclick="returnthistab()">
-                    <a class="nav-link active"  data-toggle="tab" role="tab" aria-selected="true">Add photos</a>
-                </li>
-                <li class="nav-item" onclick="looknexttab()">
-                    <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Home</a>
-                </li>
-                <li class="nav-item" onclick="looknexttab()">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
-                </li>
-                <li class="nav-item" onclick="looknexttab()">
-                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-                </li>
-            </ul>
-            <div class="tab-content" id="myTabContent" style="margin-right:4.5vw; margin-top: 2vw;">
-                <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg</div>
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</div>
-                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii</div>
+                        <form action="~/Photograph/Create" enctype="multipart/form-data" method="post">
+                            <div class="modal-body">
+                                <div align="center" class="form-group mb-3 w-100">
+                                    <img id="output" class="rounded-circle" style="width: 20vw; height: 20vw; border: solid black 1px;" />
+
+                                    <p><input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)" style="display: none;"></p>
+                                    <p><label for="file" class="rounded-pill btn btn-outline-dark" style="cursor: pointer;">Upload Image</label></p>
+
+                                    <!-- Scripting for Image -->
+                                    <script>
+                                        var loadFile = function (event) {
+                                            var image = document.getElementById('output');
+                                            image.src = URL.createObjectURL(event.target.files[0]);
+                                        };
+                                    </script>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Category Name</label>
+                                    @foreach (category mycatg in Model.categories)
+                                    {
+                                        <select name="catg">
+                                            <option>Select Category</option>
+                                            <option value="@mycatg.id">@mycatg.Category_Name</option>
+                                        </select>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+                                <button type="submit" class="btn btn-primary">Add</button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div style="margin-right:4.5vw; margin-top: 0.5vw;" id="myphotos">
-                <img src="~/Content/preview-removebg-preview.png" style="width:8vw; height:8vw;" />
+
+
+
+            <!-- PHOTOGRAPHS -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="mixitup-btn col-xs-12 marB30">
+                        <a class="filter" data-filter="all"><span>ALL</span></a>
+                        <a class="filter" data-filter=".mycasual"><span>Casual</span></a>
+                        <a class="filter" data-filter=".myparty"><span>Party</span></a>
+                        <a class="filter" data-filter=".myouting"><span>Outing</span></a>
+                        <a class="filter" data-filter=".mynature"><span>Nature</span></a>
+                        <a class="filter" data-filter=".myfestival"><span>Festival</span></a>
+                    </div>
+                </div>
             </div>
+
+            <div class="mix-default container-fluid">
+                <div class="row">
+                    <div id="mixItUp">
+
+                        @foreach (Photograph myphoto in Model.photographs.Where(p => p.category_id == 5 && p.id == (int)Session["id"]))
+                        {
+                            <div class="work-gallery simple  col-md-3 col-sm-6 col-xs-12 mix mycasual">
+                                <div class="theme-hover">
+                                    <figure>
+                                        <img src="~/frontend/assets/img/work-gallery/work-1-1.jpg" alt="" />
+                                        <figcaption>
+                                            <div class="content">
+                                                <div class="content-box">
+                                                    <a href="~/frontend/assets/img/fancybox/work-1-1.jpg" class="fancybox" data-fancybox-group="group"><i class="fa fa-file-image-o" aria-hidden="true"></i></a>
+                                                </div>
+                                            </div>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+                        }
+
+                        @foreach (Photograph myphoto in Model.photographs.Where(p => p.category_id == 1 && p.id == (int)Session["id"]))
+                        {
+                            <div class="work-gallery simple  col-md-3 col-sm-6 col-xs-12 mix myparty">
+                                <div class="theme-hover">
+                                    <figure>
+                                        <img src="~/frontend/assets/img/work-gallery/work-1-2.jpg" alt="" />
+                                        <figcaption>
+                                            <div class="content">
+                                                <div class="content-box">
+                                                    <a href="~/frontend/assets/img/fancybox/work-1-2.jpg" class="fancybox" data-fancybox-group="group"><i class="fa fa-file-image-o" aria-hidden="true"></i></a>
+                                                </div>
+                                            </div>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+                        }
+
+                        @foreach (Photograph myphoto in Model.photographs.Where(p => p.category_id == 3 && p.id == (int)Session["id"]))
+                        {
+                            <div class="work-gallery simple  col-md-3 col-sm-6 col-xs-12 mix myouting">
+                                <div class="theme-hover">
+                                    <figure>
+                                        <img src="~/frontend/assets/img/work-gallery/work-1-3.jpg" alt="" />
+                                        <figcaption>
+                                            <div class="content">
+                                                <div class="content-box">
+                                                    <a href="~/frontend/assets/img/fancybox/work-1-3.jpg" class="fancybox" data-fancybox-group="group"><i class="fa fa-file-image-o" aria-hidden="true"></i></a>
+                                                </div>
+                                            </div>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+                        }
+
+                        @foreach (Photograph myphoto in Model.photographs.Where(p => p.category_id == 4 && p.id == (int)Session["id"]))
+                        {
+                            <div class="work-gallery simple  col-md-3 col-sm-6 col-xs-12 mix  mynature">
+                                <div class="theme-hover">
+                                    <figure>
+                                        <img src="~/frontend/assets/img/work-gallery/work-1-4.jpg" alt="" />
+                                        <figcaption>
+                                            <div class="content">
+                                                <div class="content-box">
+                                                    <a href="~/frontend/assets/img/fancybox/work-1-4.jpg" class="fancybox" data-fancybox-group="group"><i class="fa fa-file-image-o" aria-hidden="true"></i></a>
+                                                </div>
+                                            </div>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+                        }
+
+                        @foreach (Photograph myphoto in Model.photographs.Where(p => p.category_id == 2 && p.id == (int)Session["id"]))
+                        {
+                            <div class="work-gallery simple col-md-3 col-sm-6 col-xs-12 mix myfestival">
+                                <div class="theme-hover">
+                                    <figure>
+                                        <img src="~/frontend/assets/img/work-gallery/work-1-5.jpg" alt="" />
+                                        <figcaption>
+                                            <div class="content">
+                                                <div class="content-box">
+                                                    <a href="~/frontend/assets/img/fancybox/work-1-5.jpg" class="fancybox" data-fancybox-group="group"><i class="fa fa-file-image-o" aria-hidden="true"></i></a>
+                                                </div>
+                                            </div>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+
         </div>
         
     </div>

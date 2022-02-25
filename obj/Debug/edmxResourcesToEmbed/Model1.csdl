@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="Digital_Photo_PrintModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Digital_Photo_PrintEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="categories" EntityType="Digital_Photo_PrintModel.category" />
+    <EntitySet Name="Contacts" EntityType="Digital_Photo_PrintModel.Contact" />
+    <EntitySet Name="orders" EntityType="Digital_Photo_PrintModel.order" />
+    <EntitySet Name="Photographs" EntityType="Digital_Photo_PrintModel.Photograph" />
+    <EntitySet Name="Price_Info" EntityType="Digital_Photo_PrintModel.Price_Info" />
+    <EntitySet Name="users" EntityType="Digital_Photo_PrintModel.user" />
+  </EntityContainer>
   <EntityType Name="category">
     <Key>
       <PropertyRef Name="id" />
@@ -66,12 +74,4 @@
     <Property Name="Order_id" Type="Int32" />
     <Property Name="Credit_Card" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
   </EntityType>
-  <EntityContainer Name="Digital_Photo_PrintEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="categories" EntityType="Self.category" />
-    <EntitySet Name="Contacts" EntityType="Self.Contact" />
-    <EntitySet Name="orders" EntityType="Self.order" />
-    <EntitySet Name="Photographs" EntityType="Self.Photograph" />
-    <EntitySet Name="Price_Info" EntityType="Self.Price_Info" />
-    <EntitySet Name="users" EntityType="Self.user" />
-  </EntityContainer>
 </Schema>

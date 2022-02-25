@@ -26,6 +26,7 @@ namespace Digital_photos.Controllers
                 users = db.users.ToList(),
                 price_Infos = db.Price_Info.ToList(),
                 photographs = db.Photographs.ToList(),
+                categories = db.categories.ToList(),
                 orders = db.orders.ToList()
             };
             return View(tables);
@@ -126,40 +127,50 @@ namespace Digital_photos.Controllers
 
             var eemail = Request.Form["email"];
             var epass = Request.Form["pass"];
+            var credit = Request.Form["CreditNo"];
             var mylogin = db.users.FirstOrDefault(a => a.Email == eemail && a.Pass == epass);
+            var mycard = db.users.FirstOrDefault(c => c.Credit_Card == credit);
 
 
             if (mylogin == null)
             {
-                if (image != null)
+                if (mycard == null)
                 {
-                    var filename = Path.GetFileNameWithoutExtension(image.FileName);
-                    var exten = Path.GetExtension(image.FileName);
-                    Random rnd = new Random();
+                    if (image != null)
+                    {
+                        var filename = Path.GetFileNameWithoutExtension(image.FileName);
+                        var exten = Path.GetExtension(image.FileName);
+                        Random rnd = new Random();
 
-                    var myimg = filename + rnd.Next() + exten;
+                        var myimg = filename + rnd.Next() + exten;
 
-                    image.SaveAs(Path.Combine(Server.MapPath("~/Profile_Img"), myimg));
+                        image.SaveAs(Path.Combine(Server.MapPath("~/Profile_Img"), myimg));
 
-                    data.First_Name = Request.Form["firstname"];
-                    data.Last_Name = Request.Form["lastname"];
-                    data.Email = Request.Form["email"];
-                    data.Pass = Request.Form["pass"];
-                    data.Date_Of_Birth = Request.Form["birth"];
-                    data.Gender = Request.Form["gender"];
-                    data.Phone = Request.Form["phone"];
-                    data.User_Profile = myimg;
-                    data.User_Type = 1;
-                    data.Credit_Card = Request.Form["CreditNo"];
+                        data.First_Name = Request.Form["firstname"];
+                        data.Last_Name = Request.Form["lastname"];
+                        data.Email = Request.Form["email"];
+                        data.Pass = Request.Form["pass"];
+                        data.Date_Of_Birth = Request.Form["birth"];
+                        data.Gender = Request.Form["gender"];
+                        data.Phone = Request.Form["phone"];
+                        data.User_Profile = myimg;
+                        data.User_Type = 0;
+                        data.Credit_Card = Request.Form["CreditNo"];
 
+                        db.users.Add(data);
+                        db.SaveChanges();
+                        return RedirectToAction("Login", "Home");
+                    }
+                    else if (image == null)
+                    {
+                        ViewBag.error = "Please Fill Everything";
+                        return View();
+                    }
 
-                    db.users.Add(data);
-                    db.SaveChanges();
-                    return RedirectToAction("Login", "Home");
                 }
-                else if (image == null)
+                else if (mycard != null)
                 {
-                    ViewBag.error = "Please Fill Everything";
+                    ViewBag.error = "Invalid Credit Card";
                     return View();
                 }
             }

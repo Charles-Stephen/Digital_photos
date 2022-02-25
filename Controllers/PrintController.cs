@@ -23,7 +23,15 @@ namespace Digital_photos.Controllers
         //==============================================================
         public ActionResult Index()
         {
-            return View(db.orders.ToList());
+            if (Session["name"] != null)
+            {
+                return View(db.orders.ToList());                
+            }
+            else if (Session["name"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            return View();
         }
 
 
@@ -33,14 +41,22 @@ namespace Digital_photos.Controllers
         //==============================================================
         public ActionResult Create()
         {
-            Session["ph"] = db.Photographs.Where(p => p.UserId == (int)Session["id"]);
-
-            var tables = new myuserdetails
+            if (Session["name"] != null)
             {
-                price_Infos = db.Price_Info.ToList(),
-                photographs = db.Photographs.ToList()
-            };
-            return View(tables);
+                Session["ph"] = db.Photographs.Where(p => p.UserId == (int)Session["id"]);
+
+                var tables = new myuserdetails
+                {
+                    price_Infos = db.Price_Info.ToList(),
+                    photographs = db.Photographs.ToList()
+                };
+                return View(tables);                
+            }
+            else if (Session["name"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            return View();
         }
         [HttpPost]
         public ActionResult Create(FormCollection fc)

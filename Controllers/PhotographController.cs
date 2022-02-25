@@ -17,7 +17,7 @@ namespace Digital_photos.Controllers
 
 
 
-        //==============================================================
+        //============================================================== 
         //              INDEX
         //==============================================================
         public ActionResult Index()
@@ -32,11 +32,19 @@ namespace Digital_photos.Controllers
         //==============================================================
         public ActionResult Create()
         {
-            var tables = new myuserdetails
+            if (Session["name"] != null)
             {
-                categories = db.categories.ToList()
-            };
-            return View(tables);
+                var tables = new myuserdetails
+                {
+                    categories = db.categories.ToList()
+                };
+                return View(tables);            
+            }
+            else if (Session["name"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            return View();
         }
         [HttpPost]
         public ActionResult Create(FormCollection fc, HttpPostedFileBase image)

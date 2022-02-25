@@ -17,7 +17,16 @@ namespace Digital_photos.Controllers
         // GET: Price_Info
         public ActionResult Index()
         {
-            return View(db.Price_Info.ToList());
+            if (Session["name"] != null)
+            {
+                return View(db.Price_Info.ToList());
+                 
+            }
+            else if (Session["name"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            return View();
         }
 
         
@@ -25,6 +34,14 @@ namespace Digital_photos.Controllers
         // GET: Price_Info/Create
         public ActionResult Create()
         {
+            if (Session["name"] != null)
+            {
+                return View();
+            }
+            else if (Session["name"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             return View();
         }
 
