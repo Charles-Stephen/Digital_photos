@@ -51,41 +51,70 @@ namespace Digital_photos.Controllers
         {
             Photograph data = new Photograph();
 
-            
+            var x = Session["usertype"];
+
             if (image != null)
             {
-                var filename = Path.GetFileNameWithoutExtension(image.FileName);
-                var exten = Path.GetExtension(image.FileName);
-                Random rnd = new Random();
-
-                var myimg = filename + rnd.Next() + exten;
-
-                image.SaveAs(Path.Combine(Server.MapPath("~/PhotoToPrint"), myimg));
-
-                data.UserId = (int)Session["id"];
-                data.Photo = myimg;
-                data.category_id = int.Parse(Request.Form["catg"]);                
-
-
-                db.Photographs.Add(data);
-                db.SaveChanges();
-                var x = Session["usertype"];
-                switch (x)
+                int ctg = int.Parse(Request.Form["catg"]);
+                if (ctg <= 0)
                 {
-                    case 0:
-                        return RedirectToAction("Index", "Account");
-                        break;
-                    case 1:
-                        return RedirectToAction("Index", "Home");
-                        break;
+                    var filename = Path.GetFileNameWithoutExtension(image.FileName);
+                    var exten = Path.GetExtension(image.FileName);
+                    Random rnd = new Random();
+
+                    var myimg = filename + rnd.Next() + exten;
+
+                    image.SaveAs(@"D:\E-Project\Digital_photos\PhotoToPrint\" + myimg);
+
+                    data.UserId = (int)Session["id"];
+                    data.Photo = myimg;
+                    data.category_id = int.Parse(Request.Form["catg"]);
+
+
+                    db.Photographs.Add(data);
+                    db.SaveChanges();
+
+                    switch (x)
+                    {
+                        case 0:
+                            return RedirectToAction("Index", "Account");
+                            break;
+                        case 1:
+                            return RedirectToAction("Index", "Home");
+                            break;
+                    }
+                    return View();
                 }
-                return View();
+                else if (ctg >= 1)
+                {
+
+                    return Content("<script language='javascript' type='text/javascript'>alert('Please Choose Category');</script>");
+                    switch (x)
+                    {
+                        case 0:
+                            return RedirectToAction("Index", "Account");
+                            break;
+                        case 1:
+                            return RedirectToAction("Index", "Home");
+                            break;
+                    }
+
+                }
             }
             else if (image == null)
             {
-                ViewBag.error = "Please Fill Everything";
-                return View();
-            }            
+                switch (x)
+                {
+                    case 0:
+                        ViewBag.pht = "Please Choose Image";
+                        return RedirectToAction("Profile", "Home");
+                        break;
+                    case 1:
+                        Content("<script language='javascript' type='text/javascript'>alert('Please Choose Image');</script>");
+                        return RedirectToAction("Index", "Home");
+                        break;
+                }
+            }
             return View();
         }
 

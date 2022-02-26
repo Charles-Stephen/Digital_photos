@@ -31,10 +31,10 @@
 <!--//================Contact start==============//-->
 <div class="padB100 padT100">
     <div class="container" style="width:100%">
-
-
+        
         <!-- Theme Heading -->
         <div class="theme-heading">
+
             <h1>@Session["name"]</h1>
             <h3><span class="heading-shape">@Session["name"]</span></h3>
         </div>
@@ -130,11 +130,19 @@
 
                         <form action="~/Photograph/Create" enctype="multipart/form-data" method="post">
                             <div class="modal-body">
-                                <div align="center" class="form-group mb-3 w-100">
-                                    <img id="output" class="rounded-circle" style="width: 20vw; height: 20vw; border: solid black 1px;" />
 
-                                    <p><input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)" style="display: none;"></p>
-                                    <p><label for="file" class="rounded-pill btn btn-outline-dark" style="cursor: pointer;">Upload Image</label></p>
+                                <div class="form-group">
+                                    <label>Category Name</label>
+                                    <select name="catg">
+                                        <option value="0">Select Category</option>
+                                        @foreach (category mycatg in Model.categories)
+                                        {
+                                            <option value="@mycatg.id">@mycatg.Category_Name</option>
+                                        }
+                                    </select>
+                                </div>
+
+                                <div align="center" class="form-group mb-3 w-100">
 
                                     <!-- Scripting for Image -->
                                     <script>
@@ -143,26 +151,27 @@
                                             image.src = URL.createObjectURL(event.target.files[0]);
                                         };
                                     </script>
+                                    <div style="width: 50%; border: solid black 1px; height:20.5vw; justify-items:center">
+                                        <img id="output" style="max-height: 20vw;" />
+                                    </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label>Category Name</label>
-                                    @foreach (category mycatg in Model.categories)
-                                    {
-                                        <select name="catg">
-                                            <option>Select Category</option>
-                                            <option value="@mycatg.id">@mycatg.Category_Name</option>
-                                        </select>
-                                    }
+
+
+                                <div align="center" class="form-group mb-3 w-100"">
+                                    <div>
+                                        <p><input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)" style="display: none;"></p>
+                                        <p><label for="file" class="rounded-pill btn btn-outline-dark" style="cursor: pointer;">Upload Image</label></p>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 
-                                <button type="submit" class="btn btn-primary">Add</button>
+                                    <button type="submit" class="btn btn-primary">Add</button>
 
-                            </div>
+                                </div>
                         </form>
                     </div>
                 </div>
