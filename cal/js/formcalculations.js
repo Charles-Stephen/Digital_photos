@@ -106,7 +106,10 @@ function calculateTotal() {
 
 }
 
+
 function hideTotal() {
+    if (document.getElementById('totalPrice') != null) {
     var divobj = document.getElementById('totalPrice');
     divobj.style.display = 'none';
+    }
 }

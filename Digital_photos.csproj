@@ -298,11 +298,6 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-    <Content Include="Profile_Img\168958175.png" />
-    <Content Include="Profile_Img\626841721.jpg" />
-    <Content Include="Profile_Img\kirito1601915069.jpg" />
-    <Content Include="Profile_Img\kirito186613467.jpg" />
-    <Content Include="Profile_Img\profile1075727005.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -419,6 +414,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="PhotoToPrint\" />
+    <Folder Include="Profile_Img\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

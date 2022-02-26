@@ -33,7 +33,7 @@
                     <label>Category Name</label>
                     @foreach (category mycatg in Model.categories)
                     {
-                        <select name="catg">
+                        <select name="catg" required>
                             <option value="@mycatg.id">@mycatg.Category_Name</option>
                         </select>
                     }

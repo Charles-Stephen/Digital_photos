@@ -157,7 +157,7 @@
           <Property Name="Order_id" Type="Int32" />
           <Property Name="Credit_Card" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>

@@ -154,7 +154,7 @@ namespace Digital_photos.Controllers
                         data.Gender = Request.Form["gender"];
                         data.Phone = Request.Form["phone"];
                         data.User_Profile = myimg;
-                        data.User_Type = 0;
+                        data.User_Type = 1;
                         data.Credit_Card = Request.Form["CreditNo"];
 
                         db.users.Add(data);

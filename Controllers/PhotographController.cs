@@ -56,7 +56,7 @@ namespace Digital_photos.Controllers
             if (image != null)
             {
                 int ctg = int.Parse(Request.Form["catg"]);
-                if (ctg <= 0)
+                if (ctg >= 0)
                 {
                     var filename = Path.GetFileNameWithoutExtension(image.FileName);
                     var exten = Path.GetExtension(image.FileName);
@@ -64,7 +64,9 @@ namespace Digital_photos.Controllers
 
                     var myimg = filename + rnd.Next() + exten;
 
-                    image.SaveAs(@"D:\E-Project\Digital_photos\PhotoToPrint\" + myimg);
+                    /*image.SaveAs(@"C:\Users\Student\Desktop\Charles_Aptech\Digital_photos\PhotoToPrint\" + myimg);*/
+                    string _path = Path.Combine(Server.MapPath("~/PhotoToPrint"), myimg);
+                    image.SaveAs(_path);
 
                     data.UserId = (int)Session["id"];
                     data.Photo = myimg;
@@ -85,17 +87,16 @@ namespace Digital_photos.Controllers
                     }
                     return View();
                 }
-                else if (ctg >= 1)
+                else if (ctg <= 0)
                 {
 
-                    return Content("<script language='javascript' type='text/javascript'>alert('Please Choose Category');</script>");
                     switch (x)
                     {
                         case 0:
-                            return RedirectToAction("Index", "Account");
+                            return RedirectToAction("Profile", "Home");
                             break;
                         case 1:
-                            return RedirectToAction("Index", "Home");
+                            return View();
                             break;
                     }
 
@@ -106,12 +107,10 @@ namespace Digital_photos.Controllers
                 switch (x)
                 {
                     case 0:
-                        ViewBag.pht = "Please Choose Image";
                         return RedirectToAction("Profile", "Home");
                         break;
                     case 1:
-                        Content("<script language='javascript' type='text/javascript'>alert('Please Choose Image');</script>");
-                        return RedirectToAction("Index", "Home");
+                        return View();
                         break;
                 }
             }
