@@ -259,6 +259,21 @@ namespace Digital_photos.Controllers
         }
 
 
+        //=================================================================================================
+        //                          PRINT 
+        //=================================================================================================
+        public ActionResult Print()
+        {
+            ViewBag.tid = Session["id"];
+            int UserId = (int)Session["id"];
+            var data = db.Photographs.Find(UserId);
+            
+            return View(data);
+        }
+
+
+
+
 
         //=================================================================================================
         // *************************** FRONTEND LAYOUT ****************************************************
@@ -268,8 +283,7 @@ namespace Digital_photos.Controllers
 
             var tables = new myuserdetails
             {
-                price_Infos = db.Price_Info.ToList(),
-                photographs = db.Photographs.ToList(),
+                photographs = db.Photographs.ToList()
             };
             return View(tables);
         }

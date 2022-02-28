@@ -403,6 +403,7 @@
     <Content Include="Views\Account\Account.cshtml" />
     <Content Include="Views\Print\Create.cshtml" />
     <Content Include="Views\Photograph\Create.cshtml" />
+    <Content Include="Views\Home\Print.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

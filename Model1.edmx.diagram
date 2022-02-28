@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ebb77b5466dc40da85d883d2a02c628f" Name="Diagram1">
-        <EntityTypeShape EntityType="Digital_Photo_PrintModel.category" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="Digital_Photo_PrintModel.Contact" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="Digital_Photo_PrintModel.order" Width="1.5" PointX="0.75" PointY="3.75" />
-        <EntityTypeShape EntityType="Digital_Photo_PrintModel.Photograph" Width="1.5" PointX="2.75" PointY="3.75" />
-        <EntityTypeShape EntityType="Digital_Photo_PrintModel.Price_Info" Width="1.5" PointX="4.75" PointY="0.75" />
-        <EntityTypeShape EntityType="Digital_Photo_PrintModel.user" Width="1.5" PointX="4.75" PointY="3.75" />
+      <Diagram DiagramId="5488dfd7111c4affa49d18d508d6cbc5" Name="Diagram1">
+        <EntityTypeShape EntityType="Digital_Photo_PrintModel.category" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Digital_Photo_PrintModel.Contact" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Digital_Photo_PrintModel.order" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Digital_Photo_PrintModel.Photograph" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Digital_Photo_PrintModel.Price_Info" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Digital_Photo_PrintModel.user" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
