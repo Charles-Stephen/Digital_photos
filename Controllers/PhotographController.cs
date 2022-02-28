@@ -72,6 +72,8 @@ namespace Digital_photos.Controllers
                     data.Photo = myimg;
                     data.category_id = int.Parse(Request.Form["catg"]);
 
+                    Session["phto"] = data.UserId;
+
 
                     db.Photographs.Add(data);
                     db.SaveChanges();

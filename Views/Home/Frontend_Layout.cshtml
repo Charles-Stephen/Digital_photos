@@ -155,17 +155,17 @@
 
                 <form action="~/Print/Create" id="photoform" method="post">
                     <div class="modal-body">
-                        @if (Session["ph"] != null)
+                        @if (Session["phto"] != null)
                         {
                             <div class="form-group">
-                                <label>Photograph</label>
-                                @foreach (var myphoto in Model.photographs.Where(p => p.UserId == (int)Session["id"]))
-                                {
+                                <label>Photograph</label>                                
                                 <select name="cars" id="cars">
                                     <option>Select Photo</option>
-                                    <option value="@myphoto.id"><img src="~/PhotoToPrint/@myphoto.Photo" style="max-height:8vw;" /></option>
-                                </select>
-                                }
+                                    @foreach (var myphoto in Model.photographs.Where(p => p.UserId == (int)Session["id"]))
+                                    {
+                                        <option value="@myphoto.id"><img src="~/PhotoToPrint/@myphoto.Photo" style="max-height:8vw;" /></option>
+                                    }
+                                </select>                                
                             </div>
 
                             <style>
@@ -202,7 +202,7 @@
                                     <option value="6"> 6 </option>
                                     <option value="7"> 7 </option>
                                     <option value="8"> 8 </option>
-                                    <option value="9"> 9 </option>
+                                    <option value="9"> 9 </option> 
                                     <option value="10"> 10 </option>
                                     <option value="11"> 11 </option>
                                     <option value="12"> 12 </option>
@@ -220,7 +220,7 @@
                                 <input placeholder="Enter Credit Card No." name="creditNo" required />
                             </div>
                         }
-                        else if (Session["ph"] == null)
+                        else if (Session["phto"] == null)
                         {
                             <h3 class="text-center"> Please add some images on your profile before ordering! </h3>
                         }
@@ -228,11 +228,11 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        @if (Session["ph"] != null)
+                        @if (Session["phto"] != null)
                         {
                             <button type="submit" class="btn btn-primary">Print</button>
                         }
-                        @if (Session["ph"] == null)
+                        @if (Session["phto"] == null)
                         {
                             <button disabled type="submit" class="btn btn-primary">Print</button>
                         }
@@ -292,7 +292,9 @@
         <div class="contact-map">
             <div class="container">
                 <div class="map-area">
-                    <div id="gmap_canvas" class="maps open"></div>
+                    <div id="gmap_canvas" class="maps open">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2720.380297187654!2d67.07118111404795!3d24.83352175245475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33c6b27bd19e7%3A0xb8d74cc1d4416839!2sAptech%20Computer%20Education!5e1!3m2!1sen!2s!4v1646020249792!5m2!1sen!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
                 </div>
             </div>
         </div>

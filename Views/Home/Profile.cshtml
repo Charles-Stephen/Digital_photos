@@ -6,7 +6,7 @@
 }
 
 <div class="page-header contact padT100 padB70">
-    <div class="container">
+    <div class="container"> 
         <div class="row">
             <div class="col-md-12">
                 <!-- Theme Heading -->
@@ -43,7 +43,7 @@
     <div class="nowp" style="width: 100vw; display:flex; flex-flow:row; margin-right: 2vw; margin-left: 2vw;">
 
         
-        <div style="margin-top: 5vw; width: 28vw; box-shadow: -3px -3px 10px 5px grey;">
+        <div style="margin-top: 5vw; width: 28vw; height:fit-content; box-shadow: -3px -3px 10px 5px grey;">
             @foreach (var myuser in Model.users.Where(u => u.id == (int)Session["id"]))
             {
                 <img src="~/Profile_Img/@Session["profile"]" alt="Not Available" class="img-thumbnail" style="width: 27.7vw; height: 27.7vw; border:none;" />
@@ -197,11 +197,11 @@
                 <div class="row">
                     <div id="mixItUp">
 
-                        @foreach (Photograph myphoto in Model.photographs.Where(p => p.category_id == 5 && p.id == (int)Session["id"]))
+                        @foreach (Photograph myphoto in Model.photographs.Where(p => p.category_id == 5 && p.UserId == (int)Session["id"]))
                         {
                             <div class="work-gallery simple  col-md-3 col-sm-6 col-xs-12 mix mycasual">
                                 <div class="theme-hover">
-                                    <figure>
+                                    <figure style="width:500">
                                         <img src="~/PhotoToPrint/@myphoto.Photo" alt="" />
                                         <figcaption>
                                             <div class="content">
@@ -215,7 +215,7 @@
                             </div>
                         }
 
-                        @foreach (Photograph myphoto2 in Model.photographs.Where(p => p.category_id == 1 && p.id == (int)Session["id"]))
+                        @foreach (Photograph myphoto2 in Model.photographs.Where(p => p.category_id == 1 && p.UserId == (int)Session["id"]))
                         {
                             <div class="work-gallery simple  col-md-3 col-sm-6 col-xs-12 mix myparty">
                                 <div class="theme-hover">
@@ -233,7 +233,7 @@
                             </div>
                         }
 
-                        @foreach (Photograph myphoto3 in Model.photographs.Where(p => p.category_id == 3 && p.id == (int)Session["id"]))
+                        @foreach (Photograph myphoto3 in Model.photographs.Where(p => p.category_id == 3 && p.UserId == (int)Session["id"]))
                         {
                             <div class="work-gallery simple  col-md-3 col-sm-6 col-xs-12 mix myouting">
                                 <div class="theme-hover">
@@ -251,7 +251,7 @@
                             </div>
                         }
 
-                        @foreach (Photograph myphoto4 in Model.photographs.Where(p => p.category_id == 4 && p.id == (int)Session["id"]))
+                        @foreach (Photograph myphoto4 in Model.photographs.Where(p => p.category_id == 4 && p.UserId == (int)Session["id"]))
                         {
                             <div class="work-gallery simple  col-md-3 col-sm-6 col-xs-12 mix  mynature">
                                 <div class="theme-hover">
@@ -269,7 +269,7 @@
                             </div>
                         }
 
-                        @foreach (Photograph myphoto5 in Model.photographs.Where(p => p.category_id == 2 && p.id == (int)Session["id"]))
+                        @foreach (Photograph myphoto5 in Model.photographs.Where(p => p.category_id == 2 && p.UserId == (int)Session["id"]))
                         {
                             <div class="work-gallery simple col-md-3 col-sm-6 col-xs-12 mix myfestival">
                                 <div class="theme-hover">
