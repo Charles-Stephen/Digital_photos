@@ -88,6 +88,14 @@ namespace Digital_photos.Controllers
                 data.Credit_No = Request.Form["creditNo"];
                 data2.Order_id = myorderid;
 
+
+
+               /* var filePath = Path.Combine(Server.MapPath("~/PhotoToPrint"), myimg);
+                if (File.Exists(filePath))
+                {
+                    File.Delete(filePath);
+                }*/
+
                 db.orders.Add(data);
 
                 db.Entry(data2).State = EntityState.Modified;

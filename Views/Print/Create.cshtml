@@ -76,7 +76,7 @@
                             All Contacts
                         </a>
 
-                        <a class="nav-link" href="~/Pricr_Info/Index">
+                        <a class="nav-link" href="~/Price_Info/Index">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             All Price
                         </a>
@@ -108,11 +108,8 @@
                                     <option>Select Photo</option>
                                     @foreach (var myphoto in Model.photographs.Where(p => p.UserId == (int)Session["id"]))
                                     {
-                                        <option value="@myphoto.id" data>@myphoto.Photo</option>
+                                        <option value="@myphoto.id">@myphoto.Photo</option>
                                         
-                                        <style>
-
-                                        </style>
                                     }
                                     </select>                                                                                                                         
                             </div>
