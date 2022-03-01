@@ -89,12 +89,21 @@ namespace Digital_photos.Controllers
                 data2.Order_id = myorderid;
 
 
+                var chphoto = db.Photographs.FirstOrDefault(pph => pph.id == data.Photograph_Id);
+                var phimg = chphoto.Photo;
+                 var filePath = Path.Combine(Server.MapPath("~/PhotoToPrint"), phimg);
+                 if (System.IO.File.Exists(filePath))
+                 {
+                    System.IO.File.Delete(filePath);
 
-               /* var filePath = Path.Combine(Server.MapPath("~/PhotoToPrint"), myimg);
-                if (File.Exists(filePath))
-                {
-                    File.Delete(filePath);
-                }*/
+                    var category_id = chphoto.category_id;
+
+                    Photograph delph = db.Photographs.Find(category_id);
+
+                    db.Photographs.Remove(delph);
+                    db.SaveChanges();
+
+                }
 
                 db.orders.Add(data);
 
