@@ -114,7 +114,19 @@ namespace Digital_photos.Controllers
             }
             else if (mycard == null)
             {
-                ViewBag.er = "Invalid Credit Card";
+                
+                var x = Session["usertype"];
+                switch (x)
+                {
+                    case 0:
+                        ViewBag.er = "Invalid Credit Card";
+                        return RedirectToAction("Create", "Print");
+                        break;
+                    case 1:
+                        ViewBag.er = "Invalid Credit Card";
+                        return RedirectToAction("Print", "Home");
+                        break;
+                }
                 return View();
             }
             return View();

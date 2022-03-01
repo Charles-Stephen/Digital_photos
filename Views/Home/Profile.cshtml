@@ -93,23 +93,67 @@
 
             <div class="row justify-content-around">
 
-                @foreach (var myorder in Model.price_Infos.Where(o => o.id == (int)Session["id"]))
+                @foreach (var myorder in Model.orders.Where(o => o.UserId == (int)Session["id"]))
                 {
+                    foreach (var myphotos in Model.photographs.Where(o => o.id == myorder.Photograph_Id))
+                    {
+                        foreach (var myprices in Model.price_Infos.Where(o => o.id == myorder.PriceInfo_Id))
+                        {
+                            <div class="col-xl-3 col-md-5" style=" border: dotted; border-color: orange; margin-right: 1.8vw; margin-left: 1.8vw; margin-bottom: 1.8vw; margin-top: 1.8vw;">
+                                <div class="card mb-3">
+                                    <div class="card-body text-warning">
+                                        <h5 class="card-title" style=" border-bottom: dotted; border-bottom-color: orange">Order</h5>
+                                        <p class="card-text">
 
-                    <div class="col-xl-2 col-md-4" style=" border: dotted; border-color: orange; margin-right: 1.8vw; margin-left:1.8vw;">
-                        <div class="card mb-3">
-                            <div class="card-body text-warning">
-                                <h5 class="card-title" style=" border-bottom: dotted; border-bottom-color: orange">Order</h5>
-                                <p class="card-text">
-                                    Some quick example text to <br /> build on the card title and <br />
-                                    @myorder.id
-                                    <br /> make up the bulk of the card's content.
-                                    <h1>@ViewBag.ud</h1>
-                                </p>
+                                            <table class="table">
+                                                <tr>
+                                                    <th>
+                                                        Order Number
+                                                    </th>
+                                                    <td>
+                                                        @myorder.Order_Number
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        Photograph Name
+                                                    </th>
+                                                    <td>
+                                                        @myphotos.Photo
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        Price
+                                                    </th>
+                                                    <td>
+                                                        @myprices.Sale_Price
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        Quantity
+                                                    </th>
+                                                    <td>
+                                                        @myorder.Quantity
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        Total Price
+                                                    </th>
+                                                    <td>
+                                                        @myorder.Total_Price
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
+                        }
+                    }
                 }
             </div>
 
